@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=SumatraPDF
+Comment=Lightweight PDF reader
+Exec=start.sh %F
+Icon=org.sumatrapdfreader
+Terminal=false
+Categories=Office;Viewer;
+MimeType=application/pdf;
