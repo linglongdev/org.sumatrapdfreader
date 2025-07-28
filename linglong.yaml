@@ -1,0 +1,32 @@
+version: "1"
+
+package:
+  id: org.sumatrapdfreader
+  name: SumatraPDF
+  version: 3.5.2.0
+  kind: app
+  description: |
+    SumatraPDF is a free PDF reader.
+
+command: [start.sh]
+
+base: org.deepin.base.wine/23.2.0
+runtime: org.deepin.runtime.wine/23.2.1
+
+sources:
+  - kind: file
+    url: https://www.sumatrapdfreader.org/dl/rel/3.5.2/SumatraPDF-3.5.2.zip
+    digest: 5f1f460ff72ddd48979dbcfc2d427d53a473d43e18425470c78e94b19fee70b6
+
+build: |
+  7z x linglong/sources/SumatraPDF-3.5.2.zip -o$PREFIX
+  cp zh.reg $PREFIX
+  mkdir -p $PREFIX/bin
+  cp start.sh $PREFIX/bin/start.sh
+  sed -i "s|_PREFIX_|${PREFIX}|g" $PREFIX/bin/start.sh
+  chmod +x $PREFIX/bin/start.sh
+
+  mkdir -p $PREFIX/share/applications
+  cp org.sumatrapdfreader.desktop $PREFIX/share/applications
+  mkdir -p $PREFIX/share/icons/hicolor/48x48/apps
+  cp org.sumatrapdfreader.png $PREFIX/share/icons/hicolor/48x48/apps/org.sumatrapdfreader.png
